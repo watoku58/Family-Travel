@@ -16,5 +16,10 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'user'], function() {
-    Route::get('topic/create', 'User\TopicController@add');
+    Route::get('topic/create', 'User\TopicController@add')->middleware('auth');
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
