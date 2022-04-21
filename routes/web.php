@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'user'], function() {
-    Route::get('topic/create', 'User\TopicController@add')->middleware('auth');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
+    Route::get('topic/create', 'User\TopicController@add');
+    Route::post('topic/create', 'User\TopicController@create');
 });
 
 
