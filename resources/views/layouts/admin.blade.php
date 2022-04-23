@@ -45,11 +45,11 @@
                             {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                             @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                                     </li>
                                 @endif
                             {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}

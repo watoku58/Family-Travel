@@ -6,9 +6,9 @@
 <div class="container">
     <div class="navigation">
         <ul class="navigation">
-            <li><a href="#">トップ</a></li>
+            <li><a href="{{ url('/') }}">トップ</a></li>
             <li><a href="{{ url('/user/topic/create') }}">新規投稿</a></li>
-            <li><a href="#">投稿履歴</a></li>
+            <li><a href="{{ url('/user/topic') }}">投稿履歴</a></li>
             <li><a href="#">利用者情報登録</a></li>
         </ul>
     </div>

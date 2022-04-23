@@ -52,5 +52,51 @@ class TopicController extends Controller
             $posts = Topic::all();
         }
         return view('user.topic.index', ['posts' => $posts, 'cond_title' => $cond_title]);
-  }
+    }
+    
+    public function edit(Request $request)
+    {
+        // Topic Modelからデータを取得する
+        $topic = Topic::find($request->id);
+        if (empty($topic)) {
+            abort(404);    
+        }
+        return view('user.topic.edit', ['topic_form' => $topic]);
+    }
+
+    public function update(Request $request)
+    {
+        // Validationをかける
+        $this->validate($request, Topic::$rules);
+        // Topic Modelからデータを取得する
+        $topic = Topic::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $topic_form = $request->all();
+        if ($request->remove == 'true') {
+            $topic_form['image_path'] = null;
+        } elseif ($request->file('image')) {
+            $path = $request->file('image')->store('public/image');
+            $topic_form['image_path'] = basename($path);
+        } else {
+            $topic_form['image_path'] = $topic->image_path;
+        }
+        
+        unset($topic_form['image']);
+        unset($topic_form['remove']);
+        unset($topic_form['_token']);
+        
+        // 該当するデータを上書きして保存する
+        $topic->fill($topic_form)->save();
+        
+        return redirect('user/topic');
+    }
+    
+    public function delete(Request $request)
+    {
+        // 該当するTopic Modelを取得
+        $topic = Topic::find($request->id);
+        // 削除する
+        $topic->delete();
+        return redirect('user/topic/');
+    }  
 }

@@ -34,6 +34,7 @@
                                 <th width="10%">ID</th>
                                 <th width="20%">タイトル</th>
                                 <th width="50%">投稿文</th>
+                                <th width="10%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +43,14 @@
                                     <th>{{ $topic->id }}</th>
                                     <td>{{ \Str::limit($topic->title, 100) }}</td>
                                     <td>{{ \Str::limit($topic->body, 250) }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('User\TopicController@edit', ['id' => $topic->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('User\TopicController@delete', ['id' => $topic->id]) }}">削除</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
