@@ -40,4 +40,17 @@ class TopicController extends Controller
         // user/topic/createにリダイレクトする
         return redirect('user/topic/create');
     }
+    
+    public function index(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title != '') {
+            // 検索されたら検索結果を取得する
+            $posts = Topic::where('title', $cond_title)->get();
+        } else {
+            // それ以外はすべての投稿を取得する
+            $posts = Topic::all();
+        }
+        return view('user.topic.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+  }
 }

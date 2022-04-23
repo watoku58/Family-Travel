@@ -12,12 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('topic/create', 'User\TopicController@add');
     Route::post('topic/create', 'User\TopicController@create');
+    Route::get('topic', 'User\TopicController@index');
 });
 
 

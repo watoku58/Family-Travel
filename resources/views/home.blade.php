@@ -1,23 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('title', 'Family Travel')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+    <div class="navigation">
+        <ul class="navigation">
+            <li><a href="#">トップ</a></li>
+            <li><a href="{{ url('/user/topic/create') }}">新規投稿</a></li>
+            <li><a href="#">投稿履歴</a></li>
+            <li><a href="#">利用者情報登録</a></li>
+        </ul>
+    </div>
+    <div class="card-contents">
+        <h3 class="text-title">最新の投稿</h2>
+        <div class=topic-list-area>
+            <div class="topic-list">
+                <img src=".jpg" class="topic image">
             </div>
-        </div>
+            
+
     </div>
 </div>
 @endsection

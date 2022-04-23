@@ -19,7 +19,7 @@ body {
 }
 
 .table-dark {
-  color: #000;
+  color: #fff;
 }
 
 .list-group-item {
@@ -32,9 +32,32 @@ body {
 }
 
 .login-header {
-  background-color: rgba(0, 0, 0, 0.25)
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .login-body {
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+.copyright {
+  text-align: center;
+}
+
+.navigation li {
+  background-color: #EEEEEE;
+  float: left;
+  padding: 0 30px;
+  text-align: center;
+  list-style-type: none;
+}
+
+.navigation li a {
+  color: #000;
+  text-decoration: none;
+}
+
+.navigation:after {
+  clear: both;
+  display: block;
+  content: " ";
 }
