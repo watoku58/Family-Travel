@@ -23,8 +23,8 @@ class TopicController extends Controller
         
         // フォームから画像が送信されてきたら、保存して、$topic->image_path に画像のパスを保存する
         if (isset($form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $topic->image_path = basename($path);
+            $path = $request->file('image')->store('public/image');
+            $topic->image_path = basename($path);
         } else {
             $topic->image_path = null;
         }

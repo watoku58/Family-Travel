@@ -148,7 +148,10 @@ return [
     'attributes' => [
         'title' => 'タイトル',
         'travel_destination' => '旅行先',
-        'body' => '投稿文'
+        'body' => '投稿文',
+        'nickname' => 'ニックネーム',
+        'favorite_travel_destination' => '好きな旅行先',
+        'self_introduction' => '自己紹介'
     ],
 
 ];

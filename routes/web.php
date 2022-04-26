@@ -22,6 +22,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('topic/edit', 'User\TopicController@edit');
     Route::post('topic/edit', 'User\TopicController@update');
     Route::get('topic/delete', 'User\TopicController@delete');
+    Route::get('profile/create', 'User\ProfileController@add');
+    Route::post('profile/create', 'User\ProfileController@create');
 });
 
 Auth::routes();

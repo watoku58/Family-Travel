@@ -28,7 +28,7 @@
                 <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                     <div class="container">
                         <a class="navbar-brand" href="{{ url('/home') }}">
-                            {{ config('app.name', 'Family_Travel') }}
+                            {{ config('app.name', 'Family') }}
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -48,9 +48,9 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
-                                    </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
+                                </li>
                                 @endif
                             {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                             @else
