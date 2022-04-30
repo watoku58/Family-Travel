@@ -99,4 +99,12 @@ class TopicController extends Controller
         $topic->delete();
         return redirect('user/topic/');
     }  
+    
+    public function browse(Request $request)
+    {
+        // 該当するTopic Modelを取得
+        //$topic = Topic::find($request->id);
+        
+        return redirect('user/topic/browse');
+    }  
 }

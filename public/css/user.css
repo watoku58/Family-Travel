@@ -63,7 +63,6 @@ body {
 }
 
 .card-contents {
-  border: 2px solid black;
   padding: 40px;
   display: block;
   margin-bottom: 20px;
@@ -73,5 +72,23 @@ body {
 .container {
   width: 920px;
   margin: 0 auto 40px auto;
+}
+
+.posts .post .date {
+  font-size: 0.6em;
+  color: #999999;
+}
+
+.posts .post .title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.posts .post .body {
+  font-size: 0.8em;
+}
+
+.posts .post .image img {
+  width: 250px;
 }
 
