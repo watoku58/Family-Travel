@@ -9,7 +9,7 @@
             <li><a href="{{ url('/') }}">トップ</a></li>
             <li><a href="{{ url('/user/topic/create') }}">新規投稿</a></li>
             <li><a href="{{ url('/user/topic') }}">投稿履歴</a></li>
-            <li><a href="{{ url('/user/profile/create') }}">利用者情報登録</a></li>
+            <li><a href="{{ url('/user/profile') }}">利用者情報</a></li>
         </ul>
     </div>
     <div class="card-contents">

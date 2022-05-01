@@ -103,8 +103,8 @@ class TopicController extends Controller
     public function browse(Request $request)
     {
         // 該当するTopic Modelを取得
-        //$topic = Topic::find($request->id);
+        $post = Topic::find($request->id);
         
-        return redirect('user/topic/browse');
+        return view('user/topic/browse', ['post' => '$post']);
     }  
 }

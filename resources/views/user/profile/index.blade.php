@@ -8,6 +8,11 @@
         </div>
         <div class="row">
             <div class="col-md-4">
+                <a href="{{ action('User\ProfileController@create') }}" role="button" class="btn btn-primary">新規登録</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <a href="{{ action('User\ProfileController@edit') }}" role="button" class="btn btn-primary">編集</a>
             </div>
         </div>

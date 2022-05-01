@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1><a href="{{ url('/user/topic') }}">投稿一覧</a></h1>
+            <h1>投稿一覧</h1>
         </div>
         <div class="row">
             <div class="col-md-4">

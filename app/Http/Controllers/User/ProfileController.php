@@ -77,15 +77,21 @@ class ProfileController extends Controller
     
     public function index (Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
-        // 検索されたら検索結果を取得する
-        $posts = Profile::where('title', $cond_title)->get();
-        } else {
-            // それ以外はすべてのニュースを取得する
-            $posts = Profile::all();
-        }
-        return view('user.profile.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+        //1.profile_idを指定する
+        $profile = Profile::find($request->id);
+        if (empty($profile)){
+            abort(404);
+        } 
+        
+        //2.自分のprofile_idであれば編集ボタンを表示する
+        //var_dump($profile);
+        
+        //3.自分のprofile_idがなければ新規登録画面にとばす
+        
+        //$posts = Profile::all();
+            
+        return view('user.profile.index', ['posts' => [$profile]]);
+        //return view('user.profile.index', ['profile' => $profile]);
     }
     
 }
