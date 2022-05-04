@@ -13,8 +13,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@browse')->name('home');
-Route::get('/home', 'HomeController@browse')->name('home');
+Route::get('/', 'HomeController@browse');
+Route::get('/home', 'HomeController@browse');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('topic/create', 'User\TopicController@add');
@@ -30,4 +30,5 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('profile', 'User\ProfileController@index');
     Route::get('profile/edit', 'User\ProfileController@edit');
     Route::post('profile/edit', 'User\ProfileController@update');
+    Route::get('profile/delete', 'User\ProfileController@delete');
 });

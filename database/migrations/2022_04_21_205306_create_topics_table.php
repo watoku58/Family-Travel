@@ -15,7 +15,7 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('users_id');
+            $table->integer('user_id');
             $table->string('title');
             $table->string('travel_destination');
             $table->string('image_path')->nullable();

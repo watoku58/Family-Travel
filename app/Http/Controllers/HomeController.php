@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Topic;
+use App\Profile;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -31,15 +34,8 @@ class HomeController extends Controller
     public function browse(Request $request)
     {
         $posts = Topic::all()->sortByDesc('updated_at');
-        //$profile = Profile::all();
+        $profile = Profile::where('nickname');
         
-        //if (count($posts) > 0) {
-            //$headline = $posts->shift();
-        //} else {
-            //$headline = null;
-        //}
-        // home.blade.php ファイルを渡している
-        // また View テンプレートにpostsという変数を渡している
-        return view('/home', ['posts' => $posts]);
+        return view('/home', ['posts' => $posts, 'profile' => $profile]);
     }
 }

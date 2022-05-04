@@ -9,9 +9,13 @@ class Topic extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'users_id' => 'required',
         'title' => 'required',
         'travel_destination' => 'required',
         'body' => 'required',
     );
+    
+    public function user()
+    {
+        return $this->hasMany('App\User');
+    }
 }

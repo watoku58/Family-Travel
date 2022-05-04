@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Profile;
+use App\User;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -17,7 +19,6 @@ class ProfileController extends Controller
     public function create (Request $request)
     {
         $this->validate($request, Profile::$rules);
-        
         $profile = new Profile;
         $form = $request->all();
         
@@ -29,18 +30,18 @@ class ProfileController extends Controller
         }
       
         unset($form['_token']);
-      
         unset($form['my_image']);
       
         $profile->fill($form);
+        $profile->user_id = Auth::id();
         $profile->save();
 
-        return view('user.profile.create');
+        return redirect('user/profile/create');
     }
     
     public function edit (Request $request)
     {
-       // Topic Modelからデータを取得する
+        // Profile Modelからデータを取得する
         $profile = Profile::find($request->id);
         if (empty($profile)) {
             abort(404);    
@@ -50,11 +51,8 @@ class ProfileController extends Controller
     
     public function update (Request $request)
     {
-        // Validationをかける
         $this->validate($request, Profile::$rules);
-        // Topic Modelからデータを取得する
         $profile = Profile::find($request->id);
-        // 送信されてきたフォームデータを格納する
         $profile_form = $request->all();
         if ($request->remove == 'true') {
             $profile_form['my_image_path'] = null;
@@ -79,19 +77,25 @@ class ProfileController extends Controller
     {
         //1.profile_idを指定する
         $profile = Profile::find($request->id);
-        if (empty($profile)){
-            abort(404);
+        
+        //2.profile_id が指定されなかった場合⇒ユーザーの情報を表示する。
+        //自分のprofile_idであれば編集ボタンを表示する
+        if (empty($profile)) {
+            $profile = Auth::user()->profile;
         } 
-        
-        //2.自分のprofile_idであれば編集ボタンを表示する
-        //var_dump($profile);
-        
-        //3.自分のprofile_idがなければ新規登録画面にとばす
-        
-        //$posts = Profile::all();
+        //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
+        if ($profile == null) {
+            return redirect('user/profile/create');
+        } 
             
-        return view('user.profile.index', ['posts' => [$profile]]);
-        //return view('user.profile.index', ['profile' => $profile]);
+        return view('user.profile.index', ['profile' => $profile]);
     }
     
+    public function delete(Request $request)
+    {
+        $profile = Profile::find($request->id);
+        $profile->delete();
+        
+        return redirect('user/profile/');
+    }  
 }
