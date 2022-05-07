@@ -104,5 +104,14 @@ class TopicController extends Controller
         //$profile = Profile::where('nickname');
         
         return view('user.topic.browse', ['post' => $post]);
+    }
+    
+    public function favorite(Request $request)
+    {
+        // 該当するTopic Modelを取得
+        $post = Topic::find($request->id);
+        //$profile = Profile::where('nickname');
+        
+        return redirect('user/topic/browse', ['post' => $post]);
     }  
 }

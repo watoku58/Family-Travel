@@ -4,6 +4,12 @@
 
 @section('content')
     <div>
+        <form action="{{ action('User\TopicController@favorite') }}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+            <input type="submit" class="btn btn-primary" value="登録">
+        </form>
+        
+        
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">

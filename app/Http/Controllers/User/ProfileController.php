@@ -13,6 +13,11 @@ class ProfileController extends Controller
 {
     public function add ()
     {
+        $profile = Auth::user()->profile;
+        if (!empty($profile)){
+            return redirect('user/profile');
+        }
+        
         return view('user.profile.create');
     }
     
@@ -42,9 +47,9 @@ class ProfileController extends Controller
     public function edit (Request $request)
     {
         // Profile Modelからデータを取得する
-        $profile = Profile::find($request->id);
+        $profile = Auth::user()->profile;
         if (empty($profile)) {
-            abort(404);    
+            return redirect('user/profile/create');
         }
         return view('user.profile.edit', ['profile_form' => $profile]);
     }
@@ -93,9 +98,11 @@ class ProfileController extends Controller
     
     public function delete(Request $request)
     {
-        $profile = Profile::find($request->id);
-        $profile->delete();
+        $profile = Auth::user()->profile;
+        if (!empty($profile)) {
+            $profile->delete();
+        }
         
-        return redirect('user/profile/');
+        return redirect('user/profile/create');
     }  
 }

@@ -39,7 +39,7 @@ class User extends Authenticatable
     
     public function topic()
     {
-        return $this->hasOne('App\Topic');
+        return $this->hasMany('App\Topic');
     }
     
     public function profile()
