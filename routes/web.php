@@ -24,7 +24,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('topic/edit', 'User\TopicController@update');
     Route::get('topic/delete', 'User\TopicController@delete');
     Route::get('topic/browse', 'User\TopicController@browse');
-    Route::post('topic/browse', 'User\TopicController@favotrite');
     
     Route::get('profile/create', 'User\ProfileController@add');
     Route::post('profile/create', 'User\ProfileController@create');
@@ -32,4 +31,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('profile/edit', 'User\ProfileController@edit');
     Route::post('profile/edit', 'User\ProfileController@update');
     Route::get('profile/delete', 'User\ProfileController@delete');
+    
+    Route::post('topic/browse', 'User\FavoriteController@store');
+    Route::post('topic/browse', 'User\FavoriteController@delete');
 });

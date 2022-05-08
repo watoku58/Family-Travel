@@ -21,7 +21,7 @@
             <div class="posts col-md-8 mx-auto mt-3">
                 @foreach($posts as $post)
                     <div class="post">
-                        <a href="{{ url('/user/topic/browse') }}">
+                        <a href="{{ action('User\TopicController@browse', ['id' => $post->id]) }}">
                             <div class="row">
                                 <div class="text col-md-6">
                                     <div class="date">
@@ -33,9 +33,6 @@
                                     <div class="body mt-3">
                                         {{ str_limit($post->body, 1500) }}
                                     </div>
-                                    <div class="nickname">
-                                        {{ str_limit($post->nickname, 150) }}
-                                    </div>
                                 </div>
                                 <div class="image col-md-6 text-right mt-4">
                                     @if ($post->image_path)
@@ -44,6 +41,11 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="nickname">
+                            <a href="{{ action('User\ProfileController@index', ['id' => $post->id]) }}">
+                                by {{ $post->user->profile->nickname }}さん
+                            </a>
+                        </div>
                     </div>
                     <hr color="#c0c0c0">
                 @endforeach

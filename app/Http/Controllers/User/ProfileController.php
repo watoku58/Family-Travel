@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Topic;
 use App\Profile;
+use App\Favorite;
 use App\User;
 use Auth;
 
@@ -46,7 +48,6 @@ class ProfileController extends Controller
     
     public function edit (Request $request)
     {
-        // Profile Modelからデータを取得する
         $profile = Auth::user()->profile;
         if (empty($profile)) {
             return redirect('user/profile/create');

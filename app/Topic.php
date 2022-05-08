@@ -16,6 +16,11 @@ class Topic extends Model
     
     public function user()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\User');
+    }
+    
+    public function favorite()
+    {
+        return $this->hasMany('App\Favorite');
     }
 }

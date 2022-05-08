@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Topic;
+use App\Profile;
+use App\Favorite;
 use App\User;
 use Auth;
 
@@ -94,24 +96,14 @@ class TopicController extends Controller
         $topic = Topic::find($request->id);
         // 削除する
         $topic->delete();
-        return redirect('user/topic/');
+        return redirect('user/topic');
     }  
     
     public function browse(Request $request)
     {
         // 該当するTopic Modelを取得
-        $post = Topic::find($request->id);
-        //$profile = Profile::where('nickname');
+        $topic = Topic::find($request->id);
         
-        return view('user.topic.browse', ['post' => $post]);
+        return view('user.topic.browse', ['topic' => $topic]);
     }
-    
-    public function favorite(Request $request)
-    {
-        // 該当するTopic Modelを取得
-        $post = Topic::find($request->id);
-        //$profile = Profile::where('nickname');
-        
-        return redirect('user/topic/browse', ['post' => $post]);
-    }  
 }

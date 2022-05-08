@@ -4,35 +4,52 @@
 
 @section('content')
     <div>
-        <form action="{{ action('User\TopicController@favorite') }}" method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
-            <input type="submit" class="btn btn-primary" value="登録">
-        </form>
+        {{--<div class="col-md-4">
+            <a href="{{ action('User\FavoriteController@store') }}" role="button" class="btn btn-primary">お気に入り登録</a>
+        </div>--}}
         
-        
+        {{-- お気に入り登録されていればお気に入り解除を、されていなければお気に入り登録を出す。
+        @if (!empty($favorite))
+            <form action="{{ action('User\FavoriteController@delete', ['id' => $topic->id]) }}" method="POST" class="mb-4" >
+            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                <button type="submit">
+                    お気に入り解除
+                </button>
+            </form>
+        @else
+            <form action="{{ action('User\FavoriteController@store', ['id' => $topic->id]) }}" method="POST" class="mb-4" >
+            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                <button type="submit">
+                    お気に入り登録
+                </button>
+            </form>
+        @endif --}}
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
                 <div class="row">
                     <div class="text col-md-6">
                         <div class="date">
-                            {{ $post->updated_at->format('Y年m月d日') }}
+                            {{ $topic->updated_at->format('Y年m月d日') }}
                         </div>
                         <div class="title">
-                            {{ $post->title, 150) }}
+                            {{ $topic->title, 150 }}
                         </div>
                         <div class="body mt-3">
-                            {{ $post->body, 1500) }}
+                            {{ $topic->body, 1500 }}
                         </div>
-                        //<div class="nickname">
-                            //{{ $profile->nickname, 150) }}
-                        //</div>
+                        <div class="nickname">
+                            <a href="{{ action('User\ProfileController@index', ['id' => $topic->id]) }}">
+                                by{{ $topic->user->profile->nickname}}さん
+                            </a>
+                        </div>
                     </div>
                     <div class="image col-md-6 text-right mt-4">
-                        @if ($post->image_path)
-                            <img src="{{ asset('storage/image/' . $post->image_path) }}">
+                        @if ($topic->image_path)
+                            <img src="{{ asset('storage/image/' . $topic->image_path) }}">
                         @endif
                     </div>
+                    
                 </div>
                 <hr color="#c0c0c0">
             </div>
