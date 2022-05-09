@@ -106,4 +106,10 @@ class TopicController extends Controller
         
         return view('user.topic.browse', ['topic' => $topic]);
     }
+    
+    public function store()
+    {
+        return redirect('user/topic');
+    }
+    
 }

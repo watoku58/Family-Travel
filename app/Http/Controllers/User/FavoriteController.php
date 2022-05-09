@@ -13,14 +13,24 @@ use Auth;
 
 class FavoriteController extends Controller
 {
+    public function browse(Request $request)
+    {
+        // 該当するTopic Modelを取得
+        $topic = Topic::find($request->id);
+        
+        return view('user.topic.browse', ['topic' => $topic]);
+    }
+    
     public function store(Request $request)
     {
+        $favorite = Topic::find($request->topic_id);
         $favorite = new Favorite;
         $favorite->topic_id = $request->topic_id;
-        $favorite->user_id = Auth::user()->id;
+        $favorite->user_id = Auth::id();
         $favorite->save();
         
-        return redirect('user/topic/browse');
+        return redirect('user/topic/browse?id='. $request->topic_id);
+        //return back();
     }
 
     public function delete(Request $request)
@@ -29,6 +39,7 @@ class FavoriteController extends Controller
         
         $topic->favorite()->delete();
         
-        return redirect('user/topic/browse');
+        return redirect('user/topic/browse', [$request->topic_id]);
     }
+
 }

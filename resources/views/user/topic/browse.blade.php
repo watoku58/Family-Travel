@@ -4,9 +4,16 @@
 
 @section('content')
     <div>
-        {{--<div class="col-md-4">
-            <a href="{{ action('User\FavoriteController@store') }}" role="button" class="btn btn-primary">お気に入り登録</a>
-        </div>--}}
+        
+        <div class="col-md-4">
+            <form action="{{ action('User\FavoriteController@store') }}" method="POST" class="mb-4" >
+                @csrf
+                <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                <button type="submit">
+                    お気に入り登録
+                </button>
+            </form>
+        </div>
         
         {{-- お気に入り登録されていればお気に入り解除を、されていなければお気に入り登録を出す。
         @if (!empty($favorite))
