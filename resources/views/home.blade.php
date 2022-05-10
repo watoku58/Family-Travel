@@ -21,7 +21,7 @@
             <div class="posts col-md-8 mx-auto mt-3">
                 @foreach($posts as $post)
                     <div class="post">
-                        <a href="{{ action('User\TopicController@browse', ['id' => $post->id]) }}">
+                        <a href="{{ action('User\TopicController@browse', ['id' => $post->id ]) }}">
                             <div class="row">
                                 <div class="text col-md-6">
                                     <div class="date">

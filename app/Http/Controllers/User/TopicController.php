@@ -101,15 +101,10 @@ class TopicController extends Controller
     
     public function browse(Request $request)
     {
-        // 該当するTopic Modelを取得
         $topic = Topic::find($request->id);
+        $favorite  = Favorite::find($request->id);
         
-        return view('user.topic.browse', ['topic' => $topic]);
-    }
-    
-    public function store()
-    {
-        return redirect('user/topic');
+        return view('user.topic.browse', ['topic' => $topic, 'favorite' => $favorite]);
     }
     
 }

@@ -4,8 +4,17 @@
 
 @section('content')
     <div>
-        
         <div class="col-md-4">
+        @if ($favorite)
+            <form action="{{ action('User\FavoriteController@destroy') }}" method="POST" class="mb-4" >
+                @csrf
+                <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                @method('DELETE')
+                <button type="submit">
+                    お気に入り解除
+                </button>
+            </form>
+        @else
             <form action="{{ action('User\FavoriteController@store') }}" method="POST" class="mb-4" >
                 @csrf
                 <input type="hidden" name="topic_id" value="{{$topic->id}}">
@@ -13,24 +22,8 @@
                     お気に入り登録
                 </button>
             </form>
+        @endif
         </div>
-        
-        {{-- お気に入り登録されていればお気に入り解除を、されていなければお気に入り登録を出す。
-        @if (!empty($favorite))
-            <form action="{{ action('User\FavoriteController@delete', ['id' => $topic->id]) }}" method="POST" class="mb-4" >
-            <input type="hidden" name="topic_id" value="{{$topic->id}}">
-                <button type="submit">
-                    お気に入り解除
-                </button>
-            </form>
-        @else
-            <form action="{{ action('User\FavoriteController@store', ['id' => $topic->id]) }}" method="POST" class="mb-4" >
-            <input type="hidden" name="topic_id" value="{{$topic->id}}">
-                <button type="submit">
-                    お気に入り登録
-                </button>
-            </form>
-        @endif --}}
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">

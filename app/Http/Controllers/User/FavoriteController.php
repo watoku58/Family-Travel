@@ -23,7 +23,6 @@ class FavoriteController extends Controller
     
     public function store(Request $request)
     {
-        $favorite = Topic::find($request->topic_id);
         $favorite = new Favorite;
         $favorite->topic_id = $request->topic_id;
         $favorite->user_id = Auth::id();
@@ -33,7 +32,7 @@ class FavoriteController extends Controller
         //return back();
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         $topic = Topic::find($request->id);
         
