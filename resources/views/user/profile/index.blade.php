@@ -43,4 +43,58 @@
             </div>
         </div>
     </div>
+    <div>
+        <h3>お気に入り投稿</h3>
+        <div class="posts col-md-8 mx-auto mt-3">
+            @foreach($favorites as $favorite)
+                <div class="post">
+                    {{--<div class="col-md-4">
+                    @if (isset($favorite))
+                        <form action="{{ action('User\FavoriteController@destroy') }}" method="POST" class="mb-4" >
+                            @csrf
+                            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                            <button type="submit">
+                                お気に入り解除
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ action('User\TopicController@store') }}" method="POST" class="mb-4" >
+                            @csrf
+                            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                            <button type="submit">
+                                お気に入り登録
+                            </button>
+                        </form>
+                    @endif
+                    </div>--}}
+                    <a href="{{ action('User\TopicController@browse', ['id' => $favorite->topic_id ]) }}">
+                        <div class="row">
+                            <div class="text col-md-6">
+                                <div class="date">
+                                    {{ $favorite->updated_at->format('Y年m月d日') }}
+                                </div>
+                                <div class="title">
+                                    {{ str_limit($favorite->topic->title, 150) }}
+                                </div>
+                                <div class="body mt-3">
+                                    {{ str_limit($favorite->topic->body, 1500) }}
+                                </div>
+                            </div>
+                            <div class="image col-md-6 text-right mt-4">
+                                @if ($favorite->topic->image_path)
+                                    <img src="{{ asset('storage/image/' . $favorite->topic->image_path) }}">
+                                @endif
+                            </div>
+                        </div>
+                    </a>
+                    <div class="nickname">
+                        <a href="{{ action('User\ProfileController@index') }}">
+                            by {{ $favorite->user->profile->nickname }}さん
+                        </a>
+                    </div>
+                </div>
+                <hr color="#c0c0c0">
+            @endforeach
+        </div>
+    </div>
 @endsection

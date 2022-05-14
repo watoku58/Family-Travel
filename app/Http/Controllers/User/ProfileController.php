@@ -88,13 +88,14 @@ class ProfileController extends Controller
         //自分のprofile_idであれば編集ボタンを表示する
         if (empty($profile)) {
             $profile = Auth::user()->profile;
+            $favorites = Favorite::all();
         } 
         //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
         if ($profile == null) {
             return redirect('user/profile/create');
         } 
             
-        return view('user.profile.index', ['profile' => $profile]);
+        return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites]);
     }
     
     public function delete(Request $request)

@@ -38,9 +38,15 @@
                             {{ $topic->body, 1500 }}
                         </div>
                         <div class="nickname">
-                            <a href="{{ action('User\ProfileController@index', ['id' => $topic->id]) }}">
+                        @if (isset($topic->user->profile->nickname))
+                            <a href="{{ action('User\ProfileController@index') }}">
                                 by{{ $topic->user->profile->nickname}}さん
                             </a>
+                        @else
+                            <a href="{{ action('User\ProfileController@index') }}">
+                                by{{ $topic->user->name}}さん
+                            </a>
+                        @endif
                         </div>
                     </div>
                     <div class="image col-md-6 text-right mt-4">

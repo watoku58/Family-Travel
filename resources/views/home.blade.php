@@ -42,9 +42,15 @@
                             </div>
                         </a>
                         <div class="nickname">
+                        @if (isset($post->user->profile->nickname))
                             <a href="{{ action('User\ProfileController@index', ['id' => $post->id]) }}">
                                 by {{ $post->user->profile->nickname }}さん
                             </a>
+                        @else
+                            <a href="{{ action('User\ProfileController@index') }}">
+                                by{{ $post->user->name}}さん
+                            </a>
+                        @endif
                         </div>
                     </div>
                     <hr color="#c0c0c0">
