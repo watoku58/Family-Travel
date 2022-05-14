@@ -24,6 +24,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('topic/edit', 'User\TopicController@update');
     Route::get('topic/delete', 'User\TopicController@delete');
     Route::get('topic/browse', 'User\TopicController@browse');
+    Route::post('topic/browse', 'User\TopicController@store');
     
     Route::get('profile/create', 'User\ProfileController@add');
     Route::post('profile/create', 'User\ProfileController@create');
@@ -32,7 +33,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('profile/edit', 'User\ProfileController@update');
     Route::get('profile/delete', 'User\ProfileController@delete');
     
-    Route::post('favorite/index', 'User\FavoriteController@store');
+    //Route::post('favorite/index', 'User\FavoriteController@store');
     Route::post('favorite/index', 'User\FavoriteController@destroy');
 
 });

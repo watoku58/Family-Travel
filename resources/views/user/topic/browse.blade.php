@@ -5,17 +5,16 @@
 @section('content')
     <div>
         <div class="col-md-4">
-        @if ($favorite)
+        @if (isset($favorite))
             <form action="{{ action('User\FavoriteController@destroy') }}" method="POST" class="mb-4" >
                 @csrf
                 <input type="hidden" name="topic_id" value="{{$topic->id}}">
-                @method('DELETE')
                 <button type="submit">
                     お気に入り解除
                 </button>
             </form>
         @else
-            <form action="{{ action('User\FavoriteController@store') }}" method="POST" class="mb-4" >
+            <form action="{{ action('User\TopicController@store') }}" method="POST" class="mb-4" >
                 @csrf
                 <input type="hidden" name="topic_id" value="{{$topic->id}}">
                 <button type="submit">
