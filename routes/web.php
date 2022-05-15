@@ -33,7 +33,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('profile/edit', 'User\ProfileController@update');
     Route::get('profile/delete', 'User\ProfileController@delete');
     
-    //Route::post('favorite/index', 'User\FavoriteController@store');
-    Route::post('favorite/index', 'User\FavoriteController@destroy');
+    //Route::post('favorite/store', 'User\FavoriteController@store');
+    //Route::post('favorite/destroy', 'User\FavoriteController@destroy');
+    Route::post('favorite/toggle', 'User\FavoriteController@toggle');
 
 });

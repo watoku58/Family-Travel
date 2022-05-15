@@ -49,7 +49,7 @@
             @foreach($favorites as $favorite)
                 <div class="post">
                     {{--<div class="col-md-4">
-                    @if (isset($favorites))
+                    @if (isset($favorite))
                         <form action="{{ action('User\FavoriteController@destroy') }}" method="POST" class="mb-4" >
                             @csrf
                             <input type="hidden" name="topic_id" value="{{$topic->id}}">
