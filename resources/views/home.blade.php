@@ -43,7 +43,7 @@
                         </a>
                         <div class="nickname">
                         @if (isset($post->user->profile->nickname))
-                            <a href="{{ action('User\ProfileController@index', ['id' => $post->id]) }}">
+                            <a href="{{ action('User\ProfileController@index') }}">
                                 by {{ $post->user->profile->nickname }}さん
                             </a>
                         @else
