@@ -44,11 +44,12 @@ class TopicController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            // 検索されたら検索結果を取得する
-            $posts = Topic::where('title', $cond_title)->get();
+            // Authが投稿した記事の内で、検索されたら検索結果を取得する
+            $posts = Topic::where('user_id', Auth::id())
+                            ->where('title', $cond_title)->get();
         } else {
-            // それ以外はすべての投稿を取得する
-            $posts = Topic::all();
+            // それ以外はすべてのAuthが投稿した投稿を取得する
+            $posts = Topic::where('user_id', Auth::id())->get();
         }
         return view('user.topic.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -107,14 +108,4 @@ class TopicController extends Controller
         return view('user.topic.browse', ['topic' => $topic, 'favorite' => $favorite]);
     }
     
-    // public function store(Request $request)
-    // {
-    //     $favorite = new Favorite;
-    //     $favorite->topic_id = $request->topic_id;
-    //     $favorite->user_id = Auth::id();
-    //     $favorite->save();
-        
-    //     //return redirect('user/topic/browse?id='. $request->topic_id);
-    //     return back();
-    // }
 }
