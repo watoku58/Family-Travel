@@ -48,25 +48,15 @@
         <div class="posts col-md-8 mx-auto mt-3">
             @foreach($favorites as $favorite)
                 <div class="post">
-                    {{--<div class="col-md-4">
-                    @if (isset($favorite))
-                        <form action="{{ action('User\FavoriteController@destroy') }}" method="POST" class="mb-4" >
+                    <div class="col-md-4">
+                        <form action="{{ action('User\FavoriteController@toggle') }}" method="POST" class="mb-4" >
                             @csrf
-                            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                            <input type="hidden" name="topic_id" value="{{$favorite->topic_id}}">
                             <button type="submit">
                                 お気に入り解除
                             </button>
                         </form>
-                    @else
-                        <form action="{{ action('User\TopicController@store') }}" method="POST" class="mb-4" >
-                            @csrf
-                            <input type="hidden" name="topic_id" value="{{$topic->id}}">
-                            <button type="submit">
-                                お気に入り登録
-                            </button>
-                        </form>
-                    @endif
-                    </div>--}}
+                    </div>
                     <a href="{{ action('User\TopicController@browse', ['id' => $favorite->topic_id ]) }}">
                         <div class="row">
                             <div class="text col-md-6">
