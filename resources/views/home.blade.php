@@ -53,6 +53,9 @@
                         @endif
                         </div>
                     </div>
+                    @if ($loop->iteration == 4)
+                        @break
+                    @endif
                     <hr color="#c0c0c0">
                 @endforeach
             </div>
