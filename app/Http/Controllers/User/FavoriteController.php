@@ -31,8 +31,8 @@ class FavoriteController extends Controller
             $favorite->delete();
         }
         
-        //return redirect('user/topic/browse?id='. $request->topic_id);
-        return back();
+        return redirect('user/topic/browse?id='. $request->topic_id);
+        //return back();
     }
 
 }
