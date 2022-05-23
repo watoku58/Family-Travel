@@ -94,6 +94,7 @@ class ProfileController extends Controller
             $favorites = Favorite::where('user_id', Auth::id())->get();
         } 
         if ($profile != Auth::user()) {
+            $profile = User::find($request->id)->profile;
             $favorites = null;
         }
         //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
