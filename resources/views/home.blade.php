@@ -43,19 +43,14 @@
                         </a>
                         <div class="nickname">
                         @if (isset($post->user->profile->nickname))
-                            <a href="{{ action('User\ProfileController@index') }}">
+                            <a href="{{ action('User\ProfileController@index', ['id' => $post->user_id ]) }}">
                                 by {{ $post->user->profile->nickname }}さん
                             </a>
                         @else
-                            <a href="{{ action('User\ProfileController@index') }}">
                                 by{{ $post->user->name}}さん
-                            </a>
                         @endif
                         </div>
                     </div>
-                    @if ($loop->iteration == 4)
-                        @break
-                    @endif
                     <hr color="#c0c0c0">
                 @endforeach
             </div>

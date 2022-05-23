@@ -43,9 +43,7 @@
                                 by{{ $topic->user->profile->nickname}}さん
                             </a>
                         @else
-                            <a href="{{ action('User\ProfileController@index') }}">
                                 by{{ $topic->user->name}}さん
-                            </a>
                         @endif
                         </div>
                     </div>

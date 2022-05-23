@@ -82,11 +82,13 @@ class ProfileController extends Controller
     public function index (Request $request)
     {
         //1.profile_idを指定する
-        $profile = Profile::find($request->id);
+        $profile = User::find($request->id)->profile;
+        //dd($request->id);
         //dd($profile = Profile::find($request->id));
         
         //2.profile_id が指定されなかった場合⇒ユーザーの情報を表示する。
         //自分のprofile_idであれば編集ボタンを表示する
+        $favorites = [];
         if (empty($profile)) {
             $profile = Auth::user()->profile;
             $favorites = Favorite::where('user_id', Auth::id())->get();
@@ -95,8 +97,6 @@ class ProfileController extends Controller
         if ($profile == null) {
             return redirect('user/profile/create');
         } 
-        
-        //dd($favorites = Favorite::where('user_id', Auth::id())->get());
         
         return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites]);
     }
