@@ -82,17 +82,20 @@ class ProfileController extends Controller
     public function index (Request $request)
     {
         //1.profile_idを指定する
-        $profile = User::find($request->id)->profile;
+        $profile = User::find($request->id);
         //dd($request->id);
         //dd($profile = Profile::find($request->id));
         
         //2.profile_id が指定されなかった場合⇒ユーザーの情報を表示する。
         //自分のprofile_idであれば編集ボタンを表示する
-        $favorites = [];
+        
         if (empty($profile)) {
             $profile = Auth::user()->profile;
             $favorites = Favorite::where('user_id', Auth::id())->get();
         } 
+        if ($profile != Auth::user()) {
+            $favorites = null;
+        }
         //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
         if ($profile == null) {
             return redirect('user/profile/create');
