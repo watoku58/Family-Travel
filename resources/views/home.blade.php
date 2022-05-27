@@ -9,7 +9,7 @@
             <li><a href="{{ url('/') }}">トップ</a></li>
             <li><a href="{{ url('/user/topic/create') }}">新規投稿</a></li>
             <li><a href="{{ url('/user/topic') }}">投稿履歴</a></li>
-            <li><a href="{{ url('/user/profile') }}">利用者情報</a></li>
+            <li><a href="{{ url('/user/profile/view') }}">利用者情報</a></li>
         </ul>
     </div>
     <div class="card-contents">
@@ -43,7 +43,7 @@
                         </a>
                         <div class="nickname">
                         @if (isset($post->user->profile->nickname))
-                            <a href="{{ action('User\ProfileController@index', ['id' => $post->user_id ]) }}">
+                            <a href="{{ action('User\ProfileController@index', ['id' => $post->user->profile->id ]) }}">
                                 by {{ $post->user->profile->nickname }}さん
                             </a>
                         @else

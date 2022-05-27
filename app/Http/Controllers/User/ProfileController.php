@@ -79,28 +79,35 @@ class ProfileController extends Controller
         return redirect('user/profile');
     }
     
-    public function index (Request $request)
+    public function view (Request $request)
     {
-        //1.profile_idを指定する
-        $profile = User::find($request->id);
-        //dd($request->id);
-        //dd($profile = Profile::find($request->id));
-        
-        //2.profile_id が指定されなかった場合⇒ユーザーの情報を表示する。
-        //自分のprofile_idであれば編集ボタンを表示する
-        
-        if (empty($profile)) {
             $profile = Auth::user()->profile;
             $favorites = Favorite::where('user_id', Auth::id())->get();
-        } 
-        if ($profile != Auth::user()) {
-            $profile = User::find($request->id)->profile;
-            $favorites = null;
-        }
+        
         //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
         if ($profile == null) {
             return redirect('user/profile/create');
         } 
+        
+        return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites]);
+    }
+    
+    
+    public function index (Request $request)
+    {
+        //1.idを指定する
+        $profile = Profile::find($request->id);
+        //dd($request->id);
+        //dd(Profile::find($request->id));
+        
+        //2.自分のidであればお気に入り情報を取得する。
+        //  自分のidでなければお気に入り情報を取得せず対象の情報を取得する
+        if ($profile->user_id == Auth::id()) {
+            //$profile = Auth::user()->profile;
+            $favorites = Favorite::where('user_id', Auth::id())->get();
+        } else {
+            $favorites = null;
+        }
         
         return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites]);
     }

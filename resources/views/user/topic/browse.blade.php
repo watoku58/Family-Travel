@@ -39,7 +39,7 @@
                         </div>
                         <div class="nickname">
                         @if (isset($topic->user->profile->nickname))
-                            <a href="{{ action('User\ProfileController@index', ['id' => $topic->user_id]) }}">
+                            <a href="{{ action('User\ProfileController@index', ['id' => $topic->user->profile->id]) }}">
                                 by{{ $topic->user->profile->nickname}}さん
                             </a>
                         @else
