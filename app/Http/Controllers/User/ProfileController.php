@@ -42,8 +42,8 @@ class ProfileController extends Controller
         $profile->fill($form);
         $profile->user_id = Auth::id();
         $profile->save();
-
-        return redirect('user/profile/create');
+        
+        return redirect('user/profile/view');
     }
     
     public function edit (Request $request)
@@ -76,7 +76,7 @@ class ProfileController extends Controller
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
         
-        return redirect('user/profile');
+        return redirect('user/profile/view');
     }
     
     public function view (Request $request)
@@ -128,7 +128,7 @@ class ProfileController extends Controller
     {
         $profile = Auth::user()->profile;
         if (!empty($profile)) {
-            $profile->delete();
+            Profile::find($profile->id)->delete();
         }
         
         return redirect('user/profile/create');
