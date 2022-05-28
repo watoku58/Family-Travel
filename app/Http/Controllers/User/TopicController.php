@@ -103,6 +103,7 @@ class TopicController extends Controller
     public function browse(Request $request)
     {
         $topic = Topic::find($request->id);
+        
         //自分のお気に入りだけ情報をとる
         $favorite = Favorite::where('user_id', Auth::id())
                             ->where('topic_id', $request->id)->first();

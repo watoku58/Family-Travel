@@ -101,7 +101,7 @@
         <div class="posts col-md-8 mx-auto mt-3">
             @foreach($topics as $topic)
                 <div class="post">
-                    <a href="{{ action('User\TopicController@browse', ['id' => $topic->topic_id ]) }}">
+                    <a href="{{ action('User\TopicController@browse', ['id' => $topic->id ]) }}">
                         <div class="row">
                             <div class="text col-md-6">
                                 <div class="date">
