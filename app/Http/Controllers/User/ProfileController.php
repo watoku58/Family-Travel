@@ -82,34 +82,46 @@ class ProfileController extends Controller
     public function view (Request $request)
     {
         $profile = Auth::user()->profile;
-        $favorites = Favorite::where('user_id', Auth::id())->get();
         
         //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
         if ($profile == null) {
             return redirect('user/profile/create');
-        } 
+        } else {
+            $favorites = Favorite::where('user_id', Auth::id())->get();
         
-        return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites]);
+            $page = 0;
+            $limit = 3;
+            if (!empty($request->page) && $request->page > 0){
+                $page = $request->page;
+            }
+            $topics = Topic::where('user_id', $profile->user_id)->orderBy('updated_at', 'desc')->offset($page*$limit)->paginate($limit);
+        }
+        
+        return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites, 'topics' => $topics]);
     }
-    
     
     public function index (Request $request)
     {
         //1.idを指定する
         $profile = Profile::find($request->id);
-        //dd($request->id);
-        //dd(Profile::find($request->id));
+        //dd($request);
         
-        //2.自分のidであればお気に入り情報を取得する。
+        //2.自分のidであればviewにとばす
         //  自分のidでなければお気に入り情報を取得せず対象の情報を取得する
         if ($profile->user_id == Auth::id()) {
-            //$profile = Auth::user()->profile;
-            $favorites = Favorite::where('user_id', Auth::id())->get();
+            return redirect('user\profile\view');
         } else {
             $favorites = null;
+            
+            $page = 0;
+            $limit = 3;
+            if (!empty($request->page) && $request->page > 0){
+                $page = $request->page;
+            }
+            $topics = Topic::where('user_id', $profile->user_id)->orderBy('updated_at', 'desc')->offset($page*$limit)->paginate($limit);
         }
         
-        return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites]);
+        return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites, 'topics' => $topics]);
     }
     
     public function delete(Request $request)

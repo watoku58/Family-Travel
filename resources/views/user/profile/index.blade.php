@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="text col-md-6">
                         <div class="nickname">
-                            <h4>ニックネーム： {{ $profile->nickname, 150 }}</h4>
+                            <h4>{{ $profile->nickname }}さん</h4>
                         </div>
                         <div class="favorite_travel_destination">
                             <h4>好きな旅行先： {{ $profile->favorite_travel_destination, 150 }}</h4>
@@ -80,7 +80,7 @@
                         </a>
                         <div class="nickname">
                             @if (isset($favorite->topic->user->profile->nickname))
-                                <a href="{{ action('User\ProfileController@index', ['id' => $favorite->user_id]) }}">
+                                <a href="{{ action('User\ProfileController@index', ['id' => $favorite->user->profile->id]) }}">
                                     by {{ $favorite->topic->user->profile->nickname }}さん
                                 </a>
                             @else
@@ -94,5 +94,37 @@
         @else
         
         @endif
+    </div>
+    <div>
+        <hr color="#c0c0c0">
+        <h3>{{ $profile->nickname}}さんの投稿</h3>
+        <div class="posts col-md-8 mx-auto mt-3">
+            @foreach($topics as $topic)
+                <div class="post">
+                    <a href="{{ action('User\TopicController@browse', ['id' => $topic->topic_id ]) }}">
+                        <div class="row">
+                            <div class="text col-md-6">
+                                <div class="date">
+                                    {{ $topic->updated_at->format('Y年m月d日') }}
+                                </div>
+                                <div class="title">
+                                    {{ str_limit($topic->title, 150) }}
+                                </div>
+                                <div class="body mt-3">
+                                    {{ str_limit($topic->body, 1500) }}
+                                </div>
+                            </div>
+                            <div class="image col-md-6 text-right mt-4">
+                                @if ($topic->image_path)
+                                    <img src="{{ asset('storage/image/' . $topic->image_path) }}">
+                                @endif
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <hr color="#c0c0c0">
+            @endforeach
+            {{ $topics->appends(array('id' => $profile->id))->links() }}
+        </div>
     </div>
 @endsection
