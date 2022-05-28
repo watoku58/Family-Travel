@@ -40,7 +40,7 @@ class HomeController extends Controller
         if (!empty($request->page) && $request->page > 0){
             $page = $request->page;
         }
-        $posts = Topic::orderBy('updated_at', 'desc')->offset($page*$limit)->limit($limit)->get();
+        $posts = Topic::orderBy('updated_at', 'desc')->offset($page*$limit)->paginate($limit);
         $count = Topic::count();
         
         return view('/home', ['posts' => $posts, 'count' => $count, 'page' => $page]);

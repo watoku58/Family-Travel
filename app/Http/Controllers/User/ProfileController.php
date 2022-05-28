@@ -81,8 +81,8 @@ class ProfileController extends Controller
     
     public function view (Request $request)
     {
-            $profile = Auth::user()->profile;
-            $favorites = Favorite::where('user_id', Auth::id())->get();
+        $profile = Auth::user()->profile;
+        $favorites = Favorite::where('user_id', Auth::id())->get();
         
         //ユーザーのプロフィール情報がなければ新規登録画面に移行する。
         if ($profile == null) {

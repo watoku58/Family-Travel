@@ -62,7 +62,7 @@
                             <div class="row">
                                 <div class="text col-md-6">
                                     <div class="date">
-                                        {{ $favorite->updated_at->format('Y年m月d日') }}
+                                        {{ $favorite->topic->updated_at->format('Y年m月d日') }}
                                     </div>
                                     <div class="title">
                                         {{ str_limit($favorite->topic->title, 150) }}
