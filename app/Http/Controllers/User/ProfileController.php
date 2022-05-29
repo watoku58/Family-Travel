@@ -79,7 +79,7 @@ class ProfileController extends Controller
         return redirect('user/profile/view');
     }
     
-    public function view (Request $request)
+    public function browse (Request $request)
     {
         $profile = Auth::user()->profile;
         
@@ -88,13 +88,7 @@ class ProfileController extends Controller
             return redirect('user/profile/create');
         } else {
             $favorites = Favorite::where('user_id', Auth::id())->get();
-        
-            $page = 0;
-            $limit = 3;
-            if (!empty($request->page) && $request->page > 0){
-                $page = $request->page;
-            }
-            $topics = Topic::where('user_id', $profile->user_id)->orderBy('updated_at', 'desc')->offset($page*$limit)->paginate($limit);
+            $topics = Topic::where('user_id', $profile->user_id)->orderBy('updated_at', 'desc')->paginate(3);
         }
         
         return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites, 'topics' => $topics]);
@@ -102,6 +96,14 @@ class ProfileController extends Controller
     
     public function index (Request $request)
     {
+        // if (empty($request->id)){
+        //     //自分(ログイン者)のプロフィール表示
+        //     return $this->view($request);
+        // } else {
+        //     //指定されたプロフィールを表示
+            
+        // }
+        
         //1.idを指定する
         $profile = Profile::find($request->id);
         //dd($request);
@@ -109,16 +111,10 @@ class ProfileController extends Controller
         //2.自分のidであればviewにとばす
         //  自分のidでなければお気に入り情報を取得せず対象の情報を取得する
         if ($profile->user_id == Auth::id()) {
-            return redirect('user\profile\view');
+            return redirect('user\profile\browse');
         } else {
             $favorites = null;
-            
-            $page = 0;
-            $limit = 3;
-            if (!empty($request->page) && $request->page > 0){
-                $page = $request->page;
-            }
-            $topics = Topic::where('user_id', $profile->user_id)->orderBy('updated_at', 'desc')->offset($page*$limit)->paginate($limit);
+            $topics = Topic::where('user_id', $profile->user_id)->orderBy('updated_at', 'desc')->paginate(3);
         }
         
         return view('user.profile.index', ['profile' => $profile, 'favorites' => $favorites, 'topics' => $topics]);

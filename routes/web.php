@@ -29,7 +29,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('profile/create', 'User\ProfileController@add');
     Route::post('profile/create', 'User\ProfileController@create');
     Route::get('profile', 'User\ProfileController@index');
-    Route::get('profile/view', 'User\ProfileController@view');
+    Route::get('profile/browse', 'User\ProfileController@browse');
     Route::get('profile/edit', 'User\ProfileController@edit');
     Route::post('profile/edit', 'User\ProfileController@update');
     Route::get('profile/delete', 'User\ProfileController@delete');

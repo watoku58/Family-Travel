@@ -9,7 +9,7 @@
             <li><a href="{{ url('/') }}">トップ</a></li>
             <li><a href="{{ url('/user/topic/create') }}">新規投稿</a></li>
             <li><a href="{{ url('/user/topic') }}">投稿履歴</a></li>
-            <li><a href="{{ url('/user/profile/view') }}">利用者情報</a></li>
+            <li><a href="{{ url('/user/profile/browse') }}">利用者情報</a></li>
         </ul>
     </div>
     <div>
@@ -17,8 +17,8 @@
         <h3 class="text-title">投稿</h2>
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
-                <h4 class="text-title">タグから探す</h4>
-                <h4 class="text-title">エリアから探す</h4>
+                <h4 class="text-title">タグから探す（工事中）</h4>
+                <h4 class="text-title">エリアから探す（工事中）</h4>
             </div>
         </div>
         
