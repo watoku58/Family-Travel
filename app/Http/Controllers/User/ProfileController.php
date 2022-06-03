@@ -43,7 +43,7 @@ class ProfileController extends Controller
         $profile->user_id = Auth::id();
         $profile->save();
         
-        return redirect('user/profile/view');
+        return redirect('user/profile/browse');
     }
     
     public function edit (Request $request)
@@ -76,7 +76,7 @@ class ProfileController extends Controller
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
         
-        return redirect('user/profile/view');
+        return redirect('user/profile/browse');
     }
     
     public function browse (Request $request)

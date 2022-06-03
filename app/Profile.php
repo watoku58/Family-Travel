@@ -12,9 +12,9 @@ class Profile extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'nickname' => 'required',
-        'favorite_travel_destination' => 'required',
-        'self_introduction' => 'required',
+        'nickname' => 'required|max:50',
+        'favorite_travel_destination' => 'required|max:50',
+        'self_introduction' => 'required|max:255',
     );
     
     public function user()

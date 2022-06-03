@@ -9,8 +9,8 @@ class Topic extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'title' => 'required',
-        'travel_destination' => 'required',
+        'title' => 'required|max:50',
+        'travel_destination' => 'required|max:50',
         'body' => 'required|max:255',
     );
     
