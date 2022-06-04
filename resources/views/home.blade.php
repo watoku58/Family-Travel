@@ -14,21 +14,37 @@
     </div>
     <div>
         <hr color="#c0c0c0">
-         <div class="col-md-8">
-                <form action="{{ action('User\TopicController@search') }}" method="get">
-                    <div class="form-group row">
-                        <label class="col-md-2">投稿を探す</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
-                        </div>
-                        <div class="col-md-2">
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="検索">
-                        </div>
+        <h3 class="text-title">投稿を探す</h3>
+        <div class="col-md-8">
+            <form action="{{ action('User\TopicController@search') }}" method="get">
+                <div class="form-group row">
+                    <label class="col-md-2">キーワードで探す</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
                     </div>
-                </form>
-            </div>
-        
+                    <div class="col-md-2">
+                        {{ csrf_field() }}
+                        <input type="submit" class="btn btn-primary" value="検索">
+                    </div>
+                </div>
+            </form>
+            <form action="{{ action('User\TopicController@search') }}" method="get">
+                <div class="form-group row">
+                    <label class="col-md-2">エリアから探す</label>
+                    <div class="col-md-8">
+                        <select type="text" class="form-control" name="travel_destination">                          
+                            @foreach(config('pref') as $pref_id => $pref_name)
+                                <option value="{{ $pref_name }}">{{ $pref_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        {{ csrf_field() }}
+                        <input type="submit" class="btn btn-primary" value="検索">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>            
     <div>
         <hr color="#c0c0c0">

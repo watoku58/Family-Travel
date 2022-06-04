@@ -42,6 +42,12 @@
                             <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
                         </div>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-2">タグ</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control {{ $errors->has('tag_name') ? 'is-invalid' : '' }}" name="tag_name" value="{{ old('tag_name') }}" id="tag_name" >
+                        </div>
+                    </div>--}}
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="投稿">
                 </form>

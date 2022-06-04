@@ -4,12 +4,14 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 use App\Topic;
 use App\Profile;
 use App\Favorite;
 use App\User;
 use Auth;
+use App\Tag;
 
 class TopicController extends Controller
 {
@@ -21,6 +23,24 @@ class TopicController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Topic::$rules);
+        
+        // // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+        // preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tag_name, $match);
+        
+        // // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+        // $tags=[];
+        // foreach ($match[1] as $tag) {
+        //     $record = Tag::firstOrCreate(['tag_name' => $tag]);// firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
+        //     array_push($tags, $record);// $recordを配列に追加します(=$tags)
+        // };
+        
+        // // 投稿に紐付けされるタグのidを配列化
+        // $tag_id = [];
+        // foreach ($tags as $tag) {
+        //     array_push($tag_id, $tag['id']);
+        // };
+        // $topic->tag()->attach($tag_id);// 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
+        
         $topic = new Topic;
         $form = $request->all();
         
@@ -113,7 +133,13 @@ class TopicController extends Controller
     
     public function search(Request $request)
     {
-        $cond_title = $request->cond_title;
+        
+        if (empty($request->cond_title)) {
+            $cond_title = $request->travel_destination;
+        } else {
+            $cond_title = $request->cond_title;
+        }
+        
         if ($cond_title != '') {
             $topics = Topic::where('title', 'like', "%{$cond_title}%")
                          ->orWhere('travel_destination', 'like', "%{$cond_title}%")
