@@ -10,6 +10,12 @@
 
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script language="JavaScript" type="text/JavaScript">
+            function ShowLength( str ) {
+            str=str.replace(/\n/g, ""); 
+            document.getElementById("inputlength").innerHTML = "入力文字数"+ str.length ;
+            }
+        </script> 
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">

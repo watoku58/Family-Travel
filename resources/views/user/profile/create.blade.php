@@ -36,7 +36,8 @@
                     <div class="form-group row">
                         <label class="col-md-2">自己紹介</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="self_introduction" rows="20">{{ old('self_introduction') }}</textarea>
+                            <textarea class="form-control" onkeyup="ShowLength(value);" name="self_introduction" rows="20">{{ old('self_introduction') }}</textarea>
+                            <p id="inputlength" style="margin-bottom:0px;">入力文字数0</p><p>（10000字以内）</p>
                         </div>
                     </div>
                     {{ csrf_field() }}
