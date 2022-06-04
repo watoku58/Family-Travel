@@ -31,8 +31,8 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
                                 <th width="20%">タイトル</th>
+                                <th width="10%">旅行先</th>
                                 <th width="50%">投稿文</th>
                                 <th width="10%">操作</th>
                             </tr>
@@ -40,8 +40,8 @@
                         <tbody>
                             @foreach($posts as $topic)
                                 <tr>
-                                    <th>{{ $topic->id }}</th>
-                                    <td>{{ \Str::limit($topic->title, 100) }}</td>
+                                    <th>{{ \Str::limit($topic->title, 100) }}</th>
+                                    <td>{{ $topic->travel_destination }}</td>
                                     <td>{{ \Str::limit($topic->body, 250) }}</td>
                                     <td>
                                         <div>

@@ -23,7 +23,11 @@
                     <div class="form-group row">
                         <label class="col-md-2">旅行先</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="travel_destination" value="{{ old('travel_destination') }}">
+                            <select type="text" class="form-control" name="travel_destination">                          
+                                @foreach(config('pref') as $pref_id => $pref_name)
+                                    <option value="{{ $pref_name }}">{{ $pref_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

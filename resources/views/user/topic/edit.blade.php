@@ -24,7 +24,12 @@
                      <div class="form-group row">
                         <label class="col-md-2" for="title">旅行先</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="travel_destination" value="{{ $topic_form->travel_destination }}">
+                            {{--<input type="text" class="form-control" name="travel_destination" value="{{ $topic_form->travel_destination }}">--}}
+                            <select type="text" class="form-control" name="travel_destination">                          
+                                @foreach(config('pref') as $pref_id => $pref_name)
+                                    <option value="{{ $pref_name }}">{{ $pref_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -22,6 +22,13 @@
                 </button>
             </form>
         @endif
+        @if ($topic->user_id == Auth::id())
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ action('User\TopicController@edit', ['id' => $topic->id]) }}" role="button" class="btn btn-primary">編集</a>
+            </div>
+        </div>
+        @endif
         </div>
         <hr color="#c0c0c0">
         <div class="row">
