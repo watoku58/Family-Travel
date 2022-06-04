@@ -48,7 +48,7 @@
                         </div>
                         <hr color="#c0c0c0">
                     @endforeach
-                    {{ $topics->links() }}
+                    {{ $topics->appends(array('cond_title' => $cond_title))->links() }}
                 </div>
             </div>
         @else

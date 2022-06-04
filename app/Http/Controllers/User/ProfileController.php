@@ -107,7 +107,7 @@ class ProfileController extends Controller
         $profile = Profile::find($request->id);
         //dd($request);
         
-        //2.自分のidであればviewにとばす
+        //2.自分のidであればbrowseにとばす
         //  自分のidでなければお気に入り情報を取得せず対象の情報を取得する
         if ($profile->user_id == Auth::id()) {
             return redirect('user\profile\browse');

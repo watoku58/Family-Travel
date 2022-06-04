@@ -14,7 +14,7 @@ class Profile extends Model
     public static $rules = array(
         'nickname' => 'required|max:20',
         'favorite_travel_destination' => 'required|max:50',
-        'self_introduction' => 'required|max:255',
+        'self_introduction' => 'required|max:10000',
     );
     
     public function user()

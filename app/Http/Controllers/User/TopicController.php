@@ -37,7 +37,7 @@ class TopicController extends Controller
         $topic->user_id = Auth::id();
         $topic->save();
         
-        return redirect('user/topic/create');
+        return redirect('user/topic');
     }
     
     public function index(Request $request)
