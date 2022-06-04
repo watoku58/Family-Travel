@@ -67,6 +67,9 @@
                                     <div class="title">
                                         {{ str_limit($favorite->topic->title, 150) }}
                                     </div>
+                                    <div class="tavel_destination">
+                                        旅行先：{{ $favorite->topic->travel_destination }}
+                                    </div>
                                     <div class="body mt-3">
                                         {{ str_limit($favorite->topic->body, 1500) }}
                                     </div>
@@ -109,6 +112,9 @@
                                 </div>
                                 <div class="title">
                                     {{ str_limit($topic->title, 150) }}
+                                </div>
+                                <div class="tavel_destination">
+                                    旅行先：{{ $topic->travel_destination }}
                                 </div>
                                 <div class="body mt-3">
                                     {{ str_limit($topic->body, 1500) }}

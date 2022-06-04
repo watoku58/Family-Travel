@@ -101,7 +101,6 @@ class ProfileController extends Controller
         //     return $this->view($request);
         // } else {
         //     //指定されたプロフィールを表示
-            
         // }
         
         //1.idを指定する

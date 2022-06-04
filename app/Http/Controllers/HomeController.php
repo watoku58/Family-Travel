@@ -36,6 +36,7 @@ class HomeController extends Controller
     {
         //$posts = Topic::all()->sortByDesc('updated_at');
         $posts = Topic::orderBy('updated_at', 'desc')->paginate(3);
+        $cond_title = $request->cond_title;
         
         // 自分でペジネーションを設定する場合
         // $page = 0;
@@ -48,6 +49,6 @@ class HomeController extends Controller
         
         //return view('/home', ['posts' => $posts, 'count' => $count, 'page' => $page]);
         
-        return view('/home', ['posts' => $posts]);
+        return view('/home', ['posts' => $posts,'cond_title' => $cond_title]);
     }
 }

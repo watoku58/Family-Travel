@@ -111,4 +111,17 @@ class TopicController extends Controller
         return view('user.topic.browse', ['topic' => $topic, 'favorite' => $favorite]);
     }
     
+    public function search(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title != '') {
+            $topics = Topic::where('title', 'like', "%{$cond_title}%")
+                         ->orWhere('travel_destination', 'like', "%{$cond_title}%")
+                         ->orWhere('body', 'like', "%{$cond_title}%")->paginate(3);
+        } else {
+            $topics = null;
+        }
+        
+    return view('user.topic.search', ['topics' => $topics,'cond_title' => $cond_title]);
+    }
 }

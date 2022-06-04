@@ -32,7 +32,10 @@
                             {{ $topic->updated_at->format('Y年m月d日') }}
                         </div>
                         <div class="title">
-                            {{ $topic->title, 150 }}
+                            {{ str_limit($topic->title, 150) }}
+                        </div>
+                        <div class="tavel_destination">
+                            旅行先：{{ $topic->travel_destination }}
                         </div>
                         <div class="body mt-3">
                             {{ $topic->body, 1500 }}

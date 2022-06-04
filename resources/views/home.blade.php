@@ -14,13 +14,20 @@
     </div>
     <div>
         <hr color="#c0c0c0">
-        <h3 class="text-title">投稿</h2>
-        <div class="row">
-            <div class="posts col-md-8 mx-auto mt-3">
-                <h4 class="text-title">タグから探す（工事中）</h4>
-                <h4 class="text-title">エリアから探す（工事中）</h4>
+         <div class="col-md-8">
+                <form action="{{ action('User\TopicController@search') }}" method="get">
+                    <div class="form-group row">
+                        <label class="col-md-2">投稿を探す</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
+                        </div>
+                        <div class="col-md-2">
+                            {{ csrf_field() }}
+                            <input type="submit" class="btn btn-primary" value="検索">
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
         
     </div>            
     <div>
@@ -38,6 +45,9 @@
                                     </div>
                                     <div class="title">
                                         {{ str_limit($post->title, 150) }}
+                                    </div>
+                                    <div class="tavel_destination">
+                                        旅行先：{{ $post->travel_destination }}
                                     </div>
                                     <div class="body mt-3">
                                         {{ str_limit($post->body, 1500) }}
