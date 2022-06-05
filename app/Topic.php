@@ -13,8 +13,8 @@ class Topic extends Model
 
     public static $rules = array(
         'title' => 'required|max:50',
-        'travel_destination' => 'required|max:50',
-        'body' => 'required|max:10000',
+        'travel_destination' => 'required',
+        'body' => 'required|max:500',
     );
     
     public function user()

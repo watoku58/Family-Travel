@@ -45,8 +45,8 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="body">自己紹介文</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" onkeyup="ShowLength(value);" name="self_introduction" rows="20">{{ $profile_form->self_introduction }}</textarea>
-                            <p id="inputlength" style="margin-bottom:0px;">入力文字数</p><p>（10000字以内）</p>
+                            <textarea maxlength="500" class="form-control" onkeyup="ShowLength(value);" name="self_introduction" rows="20">{{ $profile_form->self_introduction }}</textarea>
+                            <p id="inputlength" style="margin-bottom:0px;">入力文字数</p><p>（500字以内）</p>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -144,6 +144,10 @@ class TopicController extends Controller
             $topics = Topic::where('title', 'like', "%{$cond_title}%")
                          ->orWhere('travel_destination', 'like', "%{$cond_title}%")
                          ->orWhere('body', 'like', "%{$cond_title}%")->paginate(3);
+                         
+            if ($topics->count() < 1){
+                $topics = null;
+            }
         } else {
             $topics = null;
         }
