@@ -35,7 +35,7 @@
                     </div>
                     <div class="image col-md-6 text-right mt-4">
                         @if ($profile->my_image_path)
-                            <img src="{{ asset('storage/my_image/' . $profile->my_image_path) }}">
+                            <img src="{{ $profile->my_image_path }}">
                         @endif
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="image col-md-6 text-right mt-4">
                                     @if ($favorite->topic->image_path)
-                                        <img src="{{ asset('storage/image/' . $favorite->topic->image_path) }}">
+                                        <img src="{{ $favorite->topic->image_path }}">
                                     @endif
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="image col-md-6 text-right mt-4">
                                 @if ($topic->image_path)
-                                    <img src="{{ asset('storage/image/' . $topic->image_path) }}">
+                                    <img src="{{ $topic->image_path }}">
                                 @endif
                             </div>
                         </div>

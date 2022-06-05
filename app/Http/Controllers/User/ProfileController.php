@@ -10,6 +10,7 @@ use App\Profile;
 use App\Favorite;
 use App\User;
 use Auth;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -30,8 +31,10 @@ class ProfileController extends Controller
         $form = $request->all();
         
         if (isset($form['my_image'])) {
-            $path = $request->file('my_image')->store('public/my_image');
-            $profile->my_image_path = basename($path);
+            //$path = $request->file('my_image')->store('public/my_image');
+            //$profile->my_image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$form['my_image'],'public');
+            $profile->my_image_path = Storage::disk('s3')->url($path);
         } else {
             $profile->my_image_path = null;
         }
@@ -63,8 +66,10 @@ class ProfileController extends Controller
         if ($request->remove == 'true') {
             $profile_form['my_image_path'] = null;
         } elseif ($request->file('my_image')) {
-            $path = $request->file('my_image')->store('public/my_image');
-            $profile_form['my_image_path'] = basename($path);
+            //$path = $request->file('my_image')->store('public/my_image');
+            //$profile_form['my_image_path'] = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$request['my_image'],'public');
+            $profile->my_image_path = Storage::disk('s3')->url($path);
         } else {
             $profile_form['my_image_path'] = $profile->my_image_path;
         }

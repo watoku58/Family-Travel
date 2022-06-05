@@ -12,6 +12,7 @@ use App\Favorite;
 use App\User;
 use Auth;
 use App\Tag;
+use Storage;
 
 class TopicController extends Controller
 {
@@ -45,8 +46,10 @@ class TopicController extends Controller
         $form = $request->all();
         
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $topic->image_path = basename($path);
+            //$path = $request->file('image')->store('public/image');
+            //$topic->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $topic->image_path = Storage::disk('s3')->url($path);
         } else {
             $topic->image_path = null;
         }
@@ -95,8 +98,10 @@ class TopicController extends Controller
         if ($request->remove == 'true') {
             $topic_form['image_path'] = null;
         } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/image');
-            $topic_form['image_path'] = basename($path);
+            //$path = $request->file('image')->store('public/image');
+            //$topic_form['image_path'] = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$request['image'],'public');
+            $topic->image_path = Storage::disk('s3')->url($path);
         } else {
             $topic_form['image_path'] = $topic->image_path;
         }
