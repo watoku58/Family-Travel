@@ -6,35 +6,12 @@ body {
 }
 
 .navbar-laravel {
-  font-size: 13px;
-  line-height: 1.5;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.HeaderBox {
-  max-width: 970px;
-  margin: 0 auto;
-  padding: 8px 0;
-}
-
-.logoitem {
-  float: left;
-  width: 450px;
-  margin: 5px 15px 0 0;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: 'FB Sloop Script Two';
-  text-decoration: none;
-}
-
-.login-action {
-  display: flex;
-  float: right;
-  justify-content: flex-end;
-  min-width: 340px;
-  width: 42%;
-  padding: 5px 0 0;
+.navbar-brand {
+  color: #000 !important;
 }
 
 .nav-link {
@@ -64,13 +41,6 @@ body {
 
 .copyright {
   text-align: center;
-}
-
-.navigation {
-  display: block;
-  float: left;
-  max-width: 970px;
-  margin-top: 10px;
 }
 
 .navigation li{
