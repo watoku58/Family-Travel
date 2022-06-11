@@ -23,6 +23,9 @@ body {
   width: 450px;
   margin: 5px 15px 0 0;
   font-size: 25px;
+  font-weight: bold;
+  font-family: "FB Sloop Script Two";
+  text-decoration: none;
 }
 
 .login-action {
@@ -61,6 +64,12 @@ body {
 
 .copyright {
   text-align: center;
+}
+
+.navigation {
+  display: block;
+  max-width: 970px;
+  margin-top: 10px;
 }
 
 .navigation li {

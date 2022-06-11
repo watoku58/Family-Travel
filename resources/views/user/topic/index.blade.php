@@ -7,13 +7,13 @@
             <h1>投稿一覧</h1>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            {{--<div class="col-md-4">
                 <a href="{{ action('User\TopicController@add') }}" role="button" class="btn btn-primary">新規作成</a>
-            </div>
+            </div>--}}
             <div class="col-md-8">
                 <form action="{{ action('User\TopicController@index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
+                        {{--<label class="col-md-2">タイトル</label>--}}
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
                         </div>

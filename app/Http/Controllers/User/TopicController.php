@@ -69,7 +69,11 @@ class TopicController extends Controller
         if ($cond_title != '') {
             // Authが投稿した記事の内で、検索されたら検索結果を取得する
             $posts = Topic::where('user_id', Auth::id())
-                            ->where('title', $cond_title)->get();
+                            ->orWhere('title', 'like', "%{$cond_title}%")
+                            ->orWhere('travel_destination', 'like', "%{$cond_title}%")
+                            ->orWhere('body', 'like', "%{$cond_title}%")
+                            ->get();
+                            
         } else {
             // それ以外はすべてのAuthが投稿した投稿を取得する
             $posts = Topic::where('user_id', Auth::id())->get();
