@@ -60,13 +60,13 @@
                                         {{ $post->updated_at->format('Y年m月d日') }}
                                     </div>
                                     <div class="title">
-                                        {{ str_limit($post->title, 150) }}
+                                        {{ str_limit($post->title, 50) }}
                                     </div>
                                     <div class="tavel_destination">
                                         旅行先：{{ $post->travel_destination }}
                                     </div>
                                     <div class="body mt-3">
-                                        {{ str_limit($post->body, 1500) }}
+                                        {{ str_limit($post->body, 100) }}
                                     </div>
                                 </div>
                                 <div class="image col-md-6 text-right mt-4">
@@ -86,7 +86,6 @@
                         @endif
                         </div>
                     </div>
-                    <hr color="#c0c0c0">
                 @endforeach
                 {{ $posts->links() }}
             </div>

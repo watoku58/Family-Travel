@@ -23,7 +23,7 @@
             <div class="posts col-md-8 mx-auto mt-3">
                 <div class="row">
                     <div class="text col-md-6">
-                        <div class="nickname">
+                        <div class="user-name">
                             <h4>{{ $profile->nickname }}さん</h4>
                         </div>
                         <div class="favorite_travel_destination">
@@ -39,17 +39,17 @@
                         @endif
                     </div>
                 </div>
-                <hr color="#c0c0c0">
             </div>
         </div>
     </div>
     <div>
+        <hr color="#c0c0c0">
         @if (isset($favorites))
-            <h3>お気に入り投稿</h3>
             <div class="posts col-md-8 mx-auto mt-3">
+                <h3>お気に入り投稿</h3>
                 @foreach($favorites as $favorite)
                     <div class="post">
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="favorite-button">
                             <form action="{{ action('User\FavoriteController@toggle') }}" method="POST" class="mb-4" >
                                 @csrf
                                 <input type="hidden" name="topic_id" value="{{$favorite->topic_id}}">
@@ -65,13 +65,13 @@
                                         {{ $favorite->topic->updated_at->format('Y年m月d日') }}
                                     </div>
                                     <div class="title">
-                                        {{ str_limit($favorite->topic->title, 150) }}
+                                        {{ str_limit($favorite->topic->title, 50) }}
                                     </div>
                                     <div class="tavel_destination">
                                         旅行先：{{ $favorite->topic->travel_destination }}
                                     </div>
                                     <div class="body mt-3">
-                                        {{ str_limit($favorite->topic->body, 1500) }}
+                                        {{ str_limit($favorite->topic->body, 100) }}
                                     </div>
                                 </div>
                                 <div class="image col-md-6 text-right mt-4">
@@ -91,7 +91,6 @@
                             @endif
                         </div>
                     </div>
-                    <hr color="#c0c0c0">
                 @endforeach
             </div>
         @else
@@ -100,8 +99,8 @@
     </div>
     <div>
         <hr color="#c0c0c0">
-        <h3>{{ $profile->nickname}}さんの投稿</h3>
         <div class="posts col-md-8 mx-auto mt-3">
+            <h3>{{ $profile->nickname}}さんの投稿</h3>
             @foreach($topics as $topic)
                 <div class="post">
                     <a href="{{ action('User\TopicController@browse', ['id' => $topic->id ]) }}">
@@ -128,7 +127,6 @@
                         </div>
                     </a>
                 </div>
-                <hr color="#c0c0c0">
             @endforeach
             {{ $topics->appends(array('id' => $profile->id))->links() }}
         </div>

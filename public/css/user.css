@@ -3,6 +3,7 @@ body {
   background-position: center;
   background-color: #fff;
   color: #000;
+  font-family: "arial";
 }
 
 .navbar-laravel {
@@ -82,8 +83,9 @@ body {
 }
 
 .posts .post {
-  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
   padding: 40px;
+  margin-bottom: 30px;
 }
 
 .posts .post .date {
@@ -103,5 +105,18 @@ body {
 .posts .post .image img {
   width: 250px;
   float: left;
+}
+
+.posts .post #favorite-button {
+  float: right;
+}
+
+.nickname {
+  float: left;
+  margin-left: 20px;
+}
+
+#edit-button {
+  float: right;
 }
 
