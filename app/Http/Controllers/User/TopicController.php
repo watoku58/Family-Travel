@@ -69,11 +69,12 @@ class TopicController extends Controller
         if ($cond_title != '') {
             // Authが投稿した記事の内で、検索されたら検索結果を取得する
             $posts = Topic::where('user_id', Auth::id())
-                            ->orWhere('title', 'like', "%{$cond_title}%")
-                            ->orWhere('travel_destination', 'like', "%{$cond_title}%")
-                            ->orWhere('body', 'like', "%{$cond_title}%")
+                            ->where(function($q) use($cond_title){
+                                $q->where('title', 'like', "%{$cond_title}%")
+                                  ->orWhere('travel_destination', 'like', "%{$cond_title}%")
+                                  ->orWhere('body', 'like', "%{$cond_title}%");
+                            })
                             ->get();
-                            
         } else {
             // それ以外はすべてのAuthが投稿した投稿を取得する
             $posts = Topic::where('user_id', Auth::id())->get();
@@ -155,10 +156,10 @@ class TopicController extends Controller
                          ->orWhere('body', 'like', "%{$cond_title}%")->paginate(3);
                          
             if ($topics->count() < 1){
-                $topics = Topic::where('user_id', Auth::id())->paginate(3);
+                $topics = null;
             }
         } else {
-            $topics = Topic::where('user_id', Auth::id())->paginate(3);
+            $topics = null;
             
         }
         
