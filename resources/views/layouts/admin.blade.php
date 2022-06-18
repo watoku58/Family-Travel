@@ -34,7 +34,7 @@
                 <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                     <div class="container">
                         <a class="navbar-brand" href="{{ url('/home') }}">
-                            <img src="{{asset('storage/image/logo.png')}}" alt="写真" width="71" height="40">
+                            <img src="{{asset('images/logo.png')}}" alt="写真" width="71" height="40">
                             {{ config('app.name', 'Family') }}
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

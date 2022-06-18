@@ -23,7 +23,7 @@
                         <input type="text" id="input_text" class="form-control" name="cond_title" value="{{ $cond_title }}">
                     </div>
                     <div class="col-md-2">
-                        {{ csrf_field() }}
+                       
                         <input type="submit" id="button" class="btn btn-primary" value="検索">
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        {{ csrf_field() }}
+                        
                         <input type="submit" class="btn btn-primary" value="検索">
                     </div>
                 </div>
