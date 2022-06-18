@@ -158,7 +158,7 @@ class TopicController extends Controller
                 $topics = Topic::where('user_id', Auth::id())->paginate(3);
             }
         } else {
-            $topics = Topic::where('id', Auth::id())->paginate(3);
+            $topics = Topic::where('user_id', Auth::id())->paginate(3);
             
         }
         

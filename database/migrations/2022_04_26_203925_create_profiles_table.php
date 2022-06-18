@@ -19,8 +19,9 @@ class CreateProfilesTable extends Migration
             $table->string('nickname');
             $table->string('my_image_path')->nullable(); 
             $table->string('favorite_travel_destination');
-            $table->string('self_introduction');
+            $table->text('self_introduction');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

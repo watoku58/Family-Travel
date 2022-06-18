@@ -19,8 +19,9 @@ class CreateTopicsTable extends Migration
             $table->string('title');
             $table->string('travel_destination');
             $table->string('image_path')->nullable();
-            $table->string('body');
+            $table->text('body');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
