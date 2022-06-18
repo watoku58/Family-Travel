@@ -156,10 +156,10 @@ class TopicController extends Controller
                          ->orWhere('body', 'like', "%{$cond_title}%")->paginate(3);
                          
             if ($topics->count() < 1){
-                $topics = null;
+                $topics = Topic::where('user_id', Auth::id())->paginate(3);
             }
         } else {
-            $topics = null;
+            $topics = Topic::where('user_id', Auth::id())->paginate(3);
             
         }
         
