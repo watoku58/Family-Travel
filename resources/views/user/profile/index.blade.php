@@ -44,7 +44,7 @@
     </div>
     <div>
         <hr color="#c0c0c0">
-        @if (is_array($favorites))
+        @if (isset($favorites))
             <div class="posts col-md-8 mx-auto mt-3">
                 <h3>お気に入り投稿</h3>
                 @foreach($favorites as $favorite)
@@ -83,7 +83,7 @@
                         </a>
                         <div class="nickname">
                             @if (isset($favorite->topic->user->profile->nickname))
-                                <a href="{{ action('User\ProfileController@index', ['id' => $favorite->user->profile->id]) }}">
+                                <a href="{{ action('User\ProfileController@index', ['id' => $favorite->topic->user->profile->id]) }}">
                                     by {{ $favorite->topic->user->profile->nickname }}さん
                                 </a>
                             @else
