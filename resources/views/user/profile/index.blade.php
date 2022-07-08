@@ -44,7 +44,7 @@
     </div>
     <div>
         <hr color="#c0c0c0">
-        @if (isset($favorites))
+        @if (is_array($favorites))
             <div class="posts col-md-8 mx-auto mt-3">
                 <h3>お気に入り投稿</h3>
                 @foreach($favorites as $favorite)

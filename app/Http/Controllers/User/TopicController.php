@@ -126,6 +126,9 @@ class TopicController extends Controller
         // 該当するTopic Modelを取得
         $topic = Topic::find($request->id);
         // 削除する
+        $topic->favorite()->each(function ($favorite) {
+                            $favorite->delete();
+                            });
         $topic->delete();
         return redirect('user/topic');
     }  

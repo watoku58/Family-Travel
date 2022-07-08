@@ -31,4 +31,13 @@ class Topic extends Model
     {
         return $this->belongsToMany('App\Tag'); 
     }
+    
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::deleted(function ($topic) {
+    //         $topic->favorite()->delete();
+    //     });
+    // }
 }
