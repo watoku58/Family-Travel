@@ -48,6 +48,12 @@
             <div class="posts col-md-8 mx-auto mt-3">
                 <h3>お気に入り投稿</h3>
                 @foreach($favorites as $favorite)
+                    @if (is_null($favorite->topic)){{--topicが削除されていたら--}}
+                        {{--@php
+                            $favorite->delete();
+                        @endphp--}}
+                        @continue
+                    @endif
                     <div class="post">
                         <div class="col-md-4" id="favorite-button">
                             <form action="{{ action('User\FavoriteController@toggle') }}" method="POST" class="mb-4" >
